@@ -10,6 +10,7 @@
     "readline": "0.0.7",
     "request": "^2.54.0",
     "sorted-object": "^1.0.0",
+    "window-size": "^0.1.0",
     "write-file-atomic": "^1.1.0"
   },
   "bin": {
