@@ -6,6 +6,7 @@
   "author": "hashrock",
   "license": "ISC",
   "dependencies": {
+    "concat-stream": "^1.5.1",
     "prompt-autocomplete": "^1.0.1",
     "readline": "0.0.7",
     "request": "^2.54.0",
