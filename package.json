@@ -6,7 +6,9 @@
   "author": "hashrock",
   "license": "ISC",
   "dependencies": {
-    "prompt-autocomplete": "^1.0.1",
+    "chalk": "^1.1.1",
+    "concat-stream": "^1.5.1",
+    "minimist": "^1.2.0",
     "readline": "0.0.7",
     "request": "^2.54.0",
     "sorted-object": "^1.0.0",

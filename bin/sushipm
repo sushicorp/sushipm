@@ -1,3 +1,19 @@
 #!/usr/bin/env node
 
-require("../lib/sushipm").run();
+var sushipm = require("../lib/sushipm");
+var argv = require('minimist')(process.argv.slice(2));
+
+var cmd = argv._[0];
+var target = argv._[1];
+
+if(cmd === undefined){
+	console.log("USAGE: sushipm [list|run] target\n");
+}
+
+if(cmd === "list"){
+	sushipm.list();
+}
+
+if(cmd === "add"){
+	sushipm.add(target);
+}
