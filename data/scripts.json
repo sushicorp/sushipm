@@ -3,10 +3,10 @@
 		"run": "npm run build:js && npm run build:css"
 	},
 	"build:js": {
-		"run": "browserify ${npm_package_config_src_js} > ${npm_package_config_dist_js}"
+		"run": "browserify main.js > bundle.js"
 	},
 	"build:jsmin": {
-		"run": "browserify ${npm_package_config_src_js} | uglifyjs -mc > ${npm_package_config_dist_js}"
+		"run": "browserify main.js | uglifyjs -mc > bundle.js"
 	},
 	"clean:rimraf": {
 		"run": "rimraf dist/*"
@@ -15,16 +15,16 @@
 		"run": "rm -rf dist/*"
 	},
 	"css:comb": {
-		"run": "csscomb ${npm_package_config_src_css}"
+		"run": "csscomb main.css"
 	},
 	"css:min": {
-		"run": "csso ${npm_package_config_dist_css} ${npm_package_config_dist_css_min}"
+		"run": "csso bundle.css bundle.css.min"
 	},
 	"css:prefix": {
-		"run": "autoprefixer -b 'last 2 versions' ${npm_package_config_src_css}"
+		"run": "autoprefixer -b 'last 2 versions' main.css"
 	},
 	"css:sass": {
-		"run": "node-sass ${npm_package_config_src_scss} ${npm_package_config_src_css}"
+		"run": "node-sass main.scss main.css"
 	},
 	"deploy:prod": {
 		"run": "s3-cli sync ./dist/ s3://example-com/prod-site/"
@@ -36,10 +36,10 @@
 		"run": "npm run lint:js && npm run lint:css"
 	},
 	"lint:scss": {
-		"run": "scss-lint ${npm_package_config_src_scss}"
+		"run": "scss-lint main.scss"
 	},
 	"lint:js": {
-		"run": "jshint ${npm_package_config_src_js}"
+		"run": "jshint main.js"
 	},
 	"live-reload": {
 		"run": "live-reload --port 9091 dist/"
@@ -66,7 +66,7 @@
 		"run": "karma start --singleRun"
 	},
 	"test:stylestats": {
-		"run": "stylestats ${npm_package_config_src_css}"
+		"run": "stylestats main.css"
 	},
 	"test:tap": {
 		"run": "tap test/*.js"
@@ -75,10 +75,10 @@
 		"run": "npm run watch:js & npm run watch:css"
 	},
 	"watch:css": {
-		"run": "catw ${npm_package_config_src_css} -o ${npm_package_config_dist_css} -v"
+		"run": "catw main.css -o bundle.css -v"
 	},
 	"watch:js": {
-		"run": "watchify ${npm_package_config_src_js} -o ${npm_package_config_dist_js} -dv",
+		"run": "watchify main.js -o bundle.js -dv",
 		"dev": ["watchify", "browserify"]
 	},
 	"watch:vue": {
