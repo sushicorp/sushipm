@@ -1,30 +1,91 @@
 {
-"build": "npm run build:js && npm run build:css",
-"build:js": "browserify ${npm_package_config_src_js} > ${npm_package_config_dist_js}",
-"build:jsmin": "browserify ${npm_package_config_src_js} | uglifyjs -mc > ${npm_package_config_dist_js}",
-"clean:rimraf": "rimraf dist/*",
-"clean": "rm -rf dist/*",
-"css:comb": "csscomb ${npm_package_config_src_css}",
-"css:min": "csso ${npm_package_config_dist_css} ${npm_package_config_dist_css_min}",
-"css:prefix": "autoprefixer -b 'last 2 versions' ${npm_package_config_src_css}",
-"css:sass": "node-sass ${npm_package_config_src_scss} ${npm_package_config_src_css}",
-"deploy:prod": "s3-cli sync ./dist/ s3://example-com/prod-site/",
-"deploy:stage": "s3-cli sync ./dist/ s3://example-com/stage-site/",
-"lint": "npm run lint:js && npm run lint:css",
-"lint:scss": "scss-lint ${npm_package_config_src_scss}",
-"lint:js": "jshint ${npm_package_config_src_js}",
-"live-reload": "live-reload --port 9091 dist/",
-"open": "opener http://localhost:9090",
-"start": "node server.js",
-"serve": "http-server -p 9090 dist/",
-"browsersync": "browser-sync start --server dist/ --files dist/**/*",
-"dev": "npm run serve & npm run watch",
-"test": "mocha test/*.js",
-"test:karma": "karma start --singleRun",
-"test:stylestats": "stylestats ${npm_package_config_src_css}",
-"test:tap": "tap test/*.js",
-"watch": "npm run watch:js & npm run watch:css",
-"watch:css": "catw ${npm_package_config_src_css} -o ${npm_package_config_dist_css} -v",
-"watch:js": "watchify ${npm_package_config_src_js} -o ${npm_package_config_dist_js} -dv",
-"watch:test": "karma start"
+	"build": {
+		"run": "npm run build:js && npm run build:css"
+	},
+	"build:js": {
+		"run": "browserify ${npm_package_config_src_js} > ${npm_package_config_dist_js}"
+	},
+	"build:jsmin": {
+		"run": "browserify ${npm_package_config_src_js} | uglifyjs -mc > ${npm_package_config_dist_js}"
+	},
+	"clean:rimraf": {
+		"run": "rimraf dist/*"
+	},
+	"clean": {
+		"run": "rm -rf dist/*"
+	},
+	"css:comb": {
+		"run": "csscomb ${npm_package_config_src_css}"
+	},
+	"css:min": {
+		"run": "csso ${npm_package_config_dist_css} ${npm_package_config_dist_css_min}"
+	},
+	"css:prefix": {
+		"run": "autoprefixer -b 'last 2 versions' ${npm_package_config_src_css}"
+	},
+	"css:sass": {
+		"run": "node-sass ${npm_package_config_src_scss} ${npm_package_config_src_css}"
+	},
+	"deploy:prod": {
+		"run": "s3-cli sync ./dist/ s3://example-com/prod-site/"
+	},
+	"deploy:stage": {
+		"run": "s3-cli sync ./dist/ s3://example-com/stage-site/"
+	},
+	"lint": {
+		"run": "npm run lint:js && npm run lint:css"
+	},
+	"lint:scss": {
+		"run": "scss-lint ${npm_package_config_src_scss}"
+	},
+	"lint:js": {
+		"run": "jshint ${npm_package_config_src_js}"
+	},
+	"live-reload": {
+		"run": "live-reload --port 9091 dist/"
+	},
+	"open": {
+		"run": "opener http://localhost:9090"
+	},
+	"start": {
+		"run": "node server.js"
+	},
+	"serve": {
+		"run": "http-server -p 9090 dist/"
+	},
+	"browsersync": {
+		"run": "browser-sync start --server dist/ --files dist/**/*"
+	},
+	"dev": {
+		"run": "npm run serve & npm run watch"
+	},
+	"test": {
+		"run": "mocha test/*.js"
+	},
+	"test:karma": {
+		"run": "karma start --singleRun"
+	},
+	"test:stylestats": {
+		"run": "stylestats ${npm_package_config_src_css}"
+	},
+	"test:tap": {
+		"run": "tap test/*.js"
+	},
+	"watch": {
+		"run": "npm run watch:js & npm run watch:css"
+	},
+	"watch:css": {
+		"run": "catw ${npm_package_config_src_css} -o ${npm_package_config_dist_css} -v"
+	},
+	"watch:js": {
+		"run": "watchify ${npm_package_config_src_js} -o ${npm_package_config_dist_js} -dv",
+		"dev": ["watchify", "browserify"]
+	},
+	"watch:vue": {
+		"run": "watchify -vd -p browserify-hmr -t vueify -e main.js -o build.js & http-server -c 1 -a localhost",
+		"dev": ["watchify", "browserify-hmr", "babel-plugin-transform-runtime", "babel-preset-es2015", "babel-runtime", "vue-hot-reload-api", "vueify", "vueify-insert-css", "http-server"]
+	},
+	"watch:test": {
+		"run": "karma start"
+	}
 }
