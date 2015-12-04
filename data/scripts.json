@@ -51,7 +51,8 @@
 		"run": "node server.js"
 	},
 	"serve": {
-		"run": "http-server -p 9090 dist/"
+		"run": "http-server -p 9090 dist/",
+		"dev": ["http-server"]
 	},
 	"browsersync": {
 		"run": "browser-sync start --server dist/ --files dist/**/*"
@@ -83,7 +84,7 @@
 	},
 	"watch:vue": {
 		"run": "watchify -vd -p browserify-hmr -t vueify -e main.js -o build.js & http-server -c 1 -a localhost",
-		"dev": ["watchify", "browserify-hmr", "babel-plugin-transform-runtime", "babel-preset-es2015", "babel-runtime", "vue-hot-reload-api", "vueify", "vueify-insert-css", "http-server"]
+		"dev": ["watchify", "browserify-hmr", "babel-plugin-transform-runtime", "babel-preset-es2015", "babel-runtime", "vue-hot-reload-api", "vueify", "vueify-insert-css", "http-server", "vue"]
 	},
 	"watch:test": {
 		"run": "karma start"
