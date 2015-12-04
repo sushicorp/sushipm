@@ -5,14 +5,8 @@
 	"build:js": {
 		"run": "browserify main.js > bundle.js"
 	},
-	"build:jsmin": {
-		"run": "browserify main.js | uglifyjs -mc > bundle.js"
-	},
 	"clean:rimraf": {
 		"run": "rimraf dist/*"
-	},
-	"clean": {
-		"run": "rm -rf dist/*"
 	},
 	"css:comb": {
 		"run": "csscomb main.css"
@@ -23,9 +17,6 @@
 	"css:prefix": {
 		"run": "autoprefixer -b 'last 2 versions' main.css"
 	},
-	"css:sass": {
-		"run": "node-sass main.scss main.css"
-	},
 	"deploy:prod": {
 		"run": "s3-cli sync ./dist/ s3://example-com/prod-site/"
 	},
@@ -35,9 +26,6 @@
 	"lint": {
 		"run": "npm run lint:js && npm run lint:css"
 	},
-	"lint:scss": {
-		"run": "scss-lint main.scss"
-	},
 	"lint:js": {
 		"run": "jshint main.js"
 	},
@@ -46,9 +34,6 @@
 	},
 	"open": {
 		"run": "opener http://localhost:9090"
-	},
-	"start": {
-		"run": "node server.js"
 	},
 	"serve": {
 		"run": "http-server -p 9090 dist/",
@@ -63,14 +48,12 @@
 	"test": {
 		"run": "mocha test/*.js"
 	},
-	"test:karma": {
-		"run": "karma start --singleRun"
-	},
 	"test:stylestats": {
 		"run": "stylestats main.css"
 	},
 	"test:tap": {
-		"run": "tap test/*.js"
+		"run": "node test/index.js | tap-spec",
+		"dev": ["tape", "tap-spec"]
 	},
 	"watch": {
 		"run": "npm run watch:js & npm run watch:css"
@@ -85,8 +68,5 @@
 	"watch:vue": {
 		"run": "watchify -vd -p browserify-hmr -t vueify -e main.js -o build.js & http-server -c 1 -a localhost",
 		"dev": ["watchify", "browserify-hmr", "babel-plugin-transform-runtime", "babel-preset-es2015", "babel-runtime", "vue-hot-reload-api", "vueify", "vueify-insert-css", "http-server", "vue"]
-	},
-	"watch:test": {
-		"run": "karma start"
 	}
 }
