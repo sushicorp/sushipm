@@ -27,3 +27,23 @@ $ sushipm add run-script-name
 $ sushipm add build:js
 ```
 
+## Create single file
+
+```sh
+$ sushipm create index.html
+```
+
+or
+
+```sh
+$ sushipm create main.js
+```
+
+or
+
+```sh
+$ sushipm create sample.vue
+```
+
+bra bra.
+

@@ -1,7 +1,7 @@
 {
   "name": "sushipm",
   "version": "3.0.0",
-  "description": "",
+  "description": "npm run-script snippets tool",
   "main": "main.js",
   "author": "hashrock",
   "license": "ISC",
