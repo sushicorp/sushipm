@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 var sushipm = require("../lib/sushipm");
+var create = require("../lib/create");
 var argv = require('minimist')(process.argv.slice(2));
 
 var cmd = argv._[0];
 var target = argv._[1];
 
 if(cmd === undefined){
-	console.log("USAGE: sushipm [list|add] target\n");
+	console.log("USAGE: sushipm [list|add|create] target\n");
 }
 
 if(cmd === "list"){
@@ -16,4 +17,8 @@ if(cmd === "list"){
 
 if(cmd === "add"){
 	sushipm.add(target);
+}
+
+if(cmd === "create"){
+	create.create(target);
 }
