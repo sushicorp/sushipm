@@ -8,7 +8,7 @@ var cmd = argv._[0];
 var target = argv._[1];
 
 if(cmd === undefined){
-	console.log("USAGE: sushipm [list|add|create] target\n");
+	console.log("USAGE: sushipm [list|add|create|dev] target\n");
 }
 
 if(cmd === "list"){
@@ -17,6 +17,10 @@ if(cmd === "list"){
 
 if(cmd === "add"){
 	sushipm.add(target);
+}
+
+if(cmd === "dev"){
+    sushipm.addDev();
 }
 
 if(cmd === "create"){

@@ -27,6 +27,19 @@ $ sushipm add run-script-name
 $ sushipm add build:js
 ```
 
+### Add dev run-script into package.json
+
+Create `dev` run-script which executes all tasks named "watch" with parallelshell.
+
+For example, when `build:js`, `watch:js`, `watch:css` tasks exists:
+
+```sh
+$ sushipm dev
+```
+
+will runs `watch:js` and `watch:css`.
+
+
 ## Create single file
 
 ```sh
